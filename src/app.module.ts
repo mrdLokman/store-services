@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import configSchema from './config/config.schema';
 import configuration from './config/configuration';
+import { UsersModule } from './users/users.module';
 
 
 @Module({
@@ -16,6 +17,7 @@ import configuration from './config/configuration';
       validationSchema: configSchema,
     }),
     MongooseModule.forRoot(process.env.DB_URL),
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
