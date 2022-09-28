@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IdGenerator } from 'libs/utils/src/id.generator';
 import { Document } from 'mongoose';
 
 export type UserDocument = Document & User;
@@ -9,6 +10,8 @@ export enum UserRole {
   ADMIN = 'admin',
 }
 
+const roles = ['user', 'admin'];
+
 export enum UserSource {
     EMAIL = 'email',
     FACEBOOK = 'facebook',
@@ -17,11 +20,17 @@ export enum UserSource {
 
 @Schema({ collection: USERS_COLLECTION_NAME, timestamps: true })
 export class User {
-    @Prop({required: false, default: 'user_11111111'})
+    @Prop({
+      required: false,
+      default: () => IdGenerator.generateId('user'),
+    })
     _id?: string;
 
     @Prop({required: true, unique: true, index: true, trim: true})
     username: string;
+
+    @Prop({required: false })
+    password?: string;
 
     @Prop({required: true, trim: true})
     firstName: string;
@@ -45,7 +54,7 @@ export class User {
     @Prop({required: false, default: false})
     phoneVerified?: boolean;
 
-    @Prop({required: true, type: String, enum: UserSource})
+    @Prop({required: true, type: String, enum: roles})
     source: UserSource;
 
     @Prop({required:false, default: false})

@@ -21,6 +21,10 @@ export class UsersRepository{
         return await this.model.findById(id).exec();
     }
 
+    public async getUserByUsername(name: string): Promise<UserDocument>{
+        return await this.model.findOne({username: name}).exec();
+    }
+
     public async activateUser(id: string): Promise<UserDocument>{
         return await this.model.findByIdAndUpdate(id, {active: true}, {new: true}).exec();
     }
