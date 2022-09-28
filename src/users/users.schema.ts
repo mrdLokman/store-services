@@ -42,13 +42,13 @@ export class User {
     photo?: string;
 
 
-    @Prop({required: false, unique: true})
+    @Prop({required: false})
     email?: string;
 
     @Prop({required: false, default: false})
     emailVerified?: boolean;
 
-    @Prop({required: false, unique: true})
+    @Prop({required: false})
     phone?: string;
 
     @Prop({required: false, default: false})
