@@ -5,5 +5,6 @@ export default Joi.object({
     .default('development'),
   HOST: Joi.string().required(),
   PORT: Joi.number().default(80).required(),
-  DB_URL: Joi.string().required()
+  DB_URL: Joi.string().required(),
+  JWT_SECRET: Joi.string().required()
 });
