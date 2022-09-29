@@ -17,6 +17,7 @@ export enum UserSource {
     FACEBOOK = 'facebook',
     GOOGLE = 'google',
   }
+const sources = ['email', 'facebook', 'google'];
 
 @Schema({ collection: USERS_COLLECTION_NAME, timestamps: true })
 export class User {
@@ -54,8 +55,11 @@ export class User {
     @Prop({required: false, default: false})
     phoneVerified?: boolean;
 
-    @Prop({required: true, type: String, enum: roles})
+    @Prop({required: true, type: String, enum: sources})
     source: UserSource;
+
+    @Prop({required: false, default: "user", type: String, enum: roles})
+    role?: UserRole;
 
     @Prop({required:false, default: false})
     isActive?: boolean;

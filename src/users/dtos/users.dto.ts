@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsOptional } from 'class-validator';
-import { UserSource } from '../users.schema';
+import { UserRole, UserSource } from '../users.schema';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -33,6 +33,30 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   source: UserSource;
+
+  @IsOptional()
+  role?: UserRole;
+}
+
+export class RegisterUserDto {
+  @IsNotEmpty()
+  username: string;
+
+  @IsNotEmpty()
+  password: string;
+
+  @IsNotEmpty()
+  confirmPassword: string;
+
+  @IsNotEmpty()
+  lastName: string;
+
+  @IsNotEmpty()
+  firstName: string;
+
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
 }
 
 export class UserDto {
@@ -47,6 +71,7 @@ export class UserDto {
   phone?: string;
   phoneVerified?: boolean;
   source: UserSource;
+  role?: UserRole;
   isActive?: boolean;
   isArchived?: boolean;
 }
