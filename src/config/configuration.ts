@@ -4,4 +4,5 @@ export default () => ({
   dbUrl: process.env.DB_URL,
   host: process.env.USER_SERVICE_HOST,
   baseUrl: process.env.BASE_URL,
+  jwtSecret: process.env.JWT_SECRET,
 });
