@@ -14,7 +14,7 @@ async function bootstrap() {
       whitelist: true, // Only accept request properties defined in DTO
     }),
   );
-  await app.listen(process.env.PORT);
-  logger.log(`NEST SERVER LISTENING ON: ${process.env.PORT}`);
+  await app.listen(process.env.PORT || 3000);
+  logger.log(`NEST SERVER LISTENING ON: ${process.env.PORT || 3000}`);
 }
 bootstrap();
