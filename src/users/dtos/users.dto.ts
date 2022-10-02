@@ -107,6 +107,7 @@ export class ExposedUserResponseDto
 {
   id?: string;
   username: string;
+  role: UserRole;
   email?: string;
   phone?: string;
 
@@ -114,6 +115,7 @@ export class ExposedUserResponseDto
     return {
       id: data._id,
       username: data.username,
+      role: data.role,
       email: data.email,
       phone: data.phone,
     };

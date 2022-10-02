@@ -5,19 +5,18 @@ import { Document } from 'mongoose';
 export type UserDocument = Document & User;
 export const USERS_COLLECTION_NAME = 'Users';
 
+
 export enum UserRole {
   USER = 'user',
   ADMIN = 'admin',
 }
 
-const roles = ['user', 'admin'];
 
 export enum UserSource {
     EMAIL = 'email',
     FACEBOOK = 'facebook',
     GOOGLE = 'google',
   }
-const sources = ['email', 'facebook', 'google'];
 
 @Schema({ collection: USERS_COLLECTION_NAME, timestamps: true })
 export class User {
@@ -55,10 +54,10 @@ export class User {
     @Prop({required: false, default: false})
     phoneVerified?: boolean;
 
-    @Prop({required: true, type: String, enum: sources})
+    @Prop({required: true, type: String, enum: UserSource})
     source: UserSource;
 
-    @Prop({required: false, default: "user", type: String, enum: roles})
+    @Prop({required: false, default: UserRole.USER, type: String, enum: UserRole})
     role?: UserRole;
 
     @Prop({required:false, default: false})

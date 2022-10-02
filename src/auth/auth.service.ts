@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { UserDto, ExposedUserResponseDto, RegisterUserDto, CreateUserDto, UserResponseDto } from 'src/users/dtos/users.dto';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { UserRole, UserSource } from 'src/users/users.schema';
+import { UserSource } from 'src/users/users.schema';
+import { UserRole } from './Authorization/role.enum';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,7 @@ export class AuthService {
     }
 
     async login(user: ExposedUserResponseDto){
-        const payload = { sub: user.id, username: user.username };
+        const payload = { sub: user.id, username: user.username, role: user.role };
         console.log(payload);
         return {
             accessToken: this.jwtService.sign(payload),
